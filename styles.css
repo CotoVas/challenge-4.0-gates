@@ -87,7 +87,6 @@ html, body {
   transition: filter 0.6s ease, transform 0.6s ease;
 }
 
-/* Сканирование — только увеличение и свечение, без тряски */
 .symbol-wrap.scanning .glyph {
   transform: scale(1.4);
   filter: drop-shadow(0 0 40px #00d4ff);
