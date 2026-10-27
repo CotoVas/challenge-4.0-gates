@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  flex-shrink: 0;
+}
+
+.gate-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.symbols-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.symbol-wrap {
+  position: absolute;
+  top: 555px;
+  transform: translate(-56%, -60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sym-left {
+  left: 785px;
+}
+
+.sym-center {
+  left: 960px;
+}
+
+.sym-right {
+  left: 1135px;
+}
+
+.hint {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #000, 0 0 20px #00d4ff;
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 15px;
+  white-space: nowrap;
+}
+
+.symbol-wrap.decoded .hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.glyph {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 15px #00d4ff);
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+/* Сканирование — только увеличение и свечение, без тряски */
+.symbol-wrap.scanning .glyph {
+  transform: scale(1.4);
+  filter: drop-shadow(0 0 40px #00d4ff);
+}
+
+.symbol-wrap.decoded .glyph {
+  filter: drop-shadow(0 0 15px #00d4ff);
+  transform: scale(1);
+}
+
+.final-message {
+  position: absolute;
+  top: 180px;
+  left: 960px;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  font-size: 80px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 20px #00d4ff, 0 0 50px #00d4ff;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+
+.final-message.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.scan-btn {
+  position: absolute;
+  bottom: 60px;
+  left: 960px;
+  transform: translateX(-50%);
+  padding: 16px 32px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: rgba(43, 108, 176, 0.9);
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.scan-btn:hover:not(:disabled) {
+  background: rgba(49, 130, 206, 1);
+}
+
+.scan-btn:disabled {
+  background: rgba(85, 85, 85, 0.7);
+  cursor: default;
+}
+
+
+
+@media (max-width: 1920px), (max-height: 1080px) {
+  .scene {
+    transform: scale(calc(min(100vw / 1920, 100vh / 1080)));
+    transform-origin: center center;
+  }
+}
